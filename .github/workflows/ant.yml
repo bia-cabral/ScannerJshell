@@ -32,13 +32,13 @@ jobs:
         distribution: 'temurin'
         java-version: '11'
 
-    - name: Compile Java
-      run: javac src/UserInputExample.java
-
     - name: Create input file
       run: |
         echo "${{ github.event.inputs.name }}" > input.txt
         echo "${{ github.event.inputs.age }}" >> input.txt
+
+    - name: Compile Java
+      run: javac src/UserInputExample.java
 
     - name: Run Java program
       run: java UserInputExample < input.txt
