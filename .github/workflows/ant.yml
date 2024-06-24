@@ -6,7 +6,17 @@ on:
       - main
   pull_request:
     branches:
-      - main
+      - main  
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Name'
+        required: true
+        default: 'World'
+      age:
+        description: 'Age'
+        required: true
+        default: '30'
 
 jobs:
   build:
@@ -25,8 +35,11 @@ jobs:
     - name: Compile Java
       run: javac src/UserInputExample.java
 
-    - name: Run Java Program
-      run: java -cp src UserInputExample
+    - name: Run Java program
+      run: java InputPipeline
+      env:
+        INPUT_NAME: ${{ github.event.inputs.name }}
+        INPUT_AGE: ${{ github.event.inputs.age }}
 
     - name: Run JShell Script
       run: jshell script.jsh
