@@ -36,7 +36,7 @@ jobs:
       run: javac src/UserInputExample.java
 
     - name: Run Java program
-      run: java InputPipeline
+      run: java UserInputExample
       env:
         INPUT_NAME: ${{ github.event.inputs.name }}
         INPUT_AGE: ${{ github.event.inputs.age }}
