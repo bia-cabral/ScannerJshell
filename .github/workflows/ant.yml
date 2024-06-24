@@ -35,11 +35,10 @@ jobs:
     - name: Compile Java
       run: javac src/UserInputExample.java
 
-    # - name: Run Java program
-    #   run: java UserInputExample
-    #   env:
-    #     INPUT_NAME: ${{ github.event.inputs.name }}
-    #     INPUT_AGE: ${{ github.event.inputs.age }}
+    - name: Create input file
+      run: |
+        echo "${{ github.event.inputs.name }}" > input.txt
+        echo "${{ github.event.inputs.age }}" >> input.txt
 
     - name: Run Java program
       run: java UserInputExample < input.txt
